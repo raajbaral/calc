@@ -1,1 +1,22 @@
 from operator import truediv,add,sub,mul,pow
+
+operator_dict={
+  '+':add,
+  '-':sub,
+  '*':mul,
+  '/':truediv
+}
+
+def calculation(nums):
+    if nums.isdigit():
+      return(float(nums))
+    for keys in operator_dict.keys():
+      frst_digit,operat,lst_digit=nums.partition(keys)
+      if operat in operator_dict:
+        return(operator_dict[operat](calculation(frst_digit),calculation(lst_digit)))
+    
+calcu=input('Please insert your maths here: ')
+
+print('Your calculation is : '+ str(calculation(calcu)))
+
+    
